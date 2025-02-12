@@ -1,4 +1,4 @@
-const apiEndpoint = "https://blue-coast-030db1a10.4.azurestaticapps.net/api/tasks";
+const apiEndpoint = "https://backend-210-300621-theo-pasquier.blackglacier-c7b0844e.northeurope.azurecontainerapps.io/api/tasks";
 
 $(document).ready(function () {
   // Charger les tâches au démarrage

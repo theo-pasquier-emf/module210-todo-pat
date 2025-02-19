@@ -19,36 +19,34 @@ jobs:
         with:
           submodules: true
           lfs: false
+
       - name: Vérifier la présence de index.html
         run: |
           if [ -f "./todo-app/src/frontend/index.html" ]; then
             echo "Le fichier index.html existe"
           else
-            echo "Erreur : index.html n’existe pas!"
+            echo "Erreur : index.html n’existe pas !"
             exit 1
           fi
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_COAST_030DB1A10 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./todo-app/src/frontend" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "." # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          app_location: "./todo-app/src/frontend"
+          api_location: ""
+          output_location: "."
+
       - name: Lighthouse CI Action
+        id: lighthouse
         uses: treosh/lighthouse-ci-action@v12
         with:
-          urls: |
-            https://todo.theopasquier.emf-informatique.ch/
-          temporaryPublicStorage: true
-          configPath: './lighthouserc.json'
+          configPath: ".lighthouserc.json"
 
-      - name: Vérifier le score d'accessibilité avec assertions
+      - name: Vérification du score d'accessibilité avec assertions
         run: |
           ACCESSIBILITY_SCORE=$(cat ./lighthouseci/report.json | jq '.categories.accessibility.score * 100')
           echo "Score d'accessibilité : $ACCESSIBILITY_SCORE"
@@ -58,7 +56,7 @@ jobs:
           fi
         env:
           CI: true
-          
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest

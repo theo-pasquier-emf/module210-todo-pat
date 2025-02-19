@@ -13,18 +13,27 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build, Push Docker Image, and Deploy to Kubernetes
+    name: Build, Verify Index, Push Docker Image, and Deploy to Kubernetes
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
 
+      # Étape de vérification de la présence de index.html
+      - name: Vérifier la présence de index.html
+        run: |
+          if [ -f "./todo-app/src/frontend/index.html" ]; then
+            echo "Le fichier index.html existe";
+          else
+            echo "Erreur : index.html n’existe pas !";
+            exit 1;
+          fi
+
       # Integration with Jira for automatic issue tracking via commits
       - name: Jira Integration
         run: |
           echo "Linking commits to Jira..."
-          # Example: git commit messages with JIRA-123 format
           git log -1 --pretty=%B | grep -Eo '[A-Z]+-[0-9]+' | xargs -I {{}} echo "Jira Issue: {{}}"
 
       # Build Docker Image

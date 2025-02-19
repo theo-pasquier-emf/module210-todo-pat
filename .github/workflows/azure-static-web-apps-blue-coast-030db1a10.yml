@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD with Jira, Docker, and Kubernetes
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -13,45 +13,25 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build, Verify Index, Push Docker Image, and Deploy to Kubernetes
+    name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-
-      # Étape de vérification de la présence de index.html
-      - name: Vérifier la présence de index.html
-        run: |
-          if [ -f "./todo-app/src/frontend/index.html" ]; then
-            echo "Le fichier index.html existe";
-          else
-            echo "Erreur : index.html n’existe pas !";
-            exit 1;
-          fi
-
-      # Integration with Jira for automatic issue tracking via commits
-      - name: Jira Integration
-        run: |
-          echo "Linking commits to Jira..."
-          git log -1 --pretty=%B | grep -Eo '[A-Z]+-[0-9]+' | xargs -I {{}} echo "Jira Issue: {{}}"
-
-      # Build Docker Image
-      - name: Build Docker Image
-        run: |
-          docker build -t myapp:${{ github.sha }} ./todo-app/src/frontend
-
-      # Push Docker Image to ACR (Azure Container Registry) or Docker Hub
-      - name: Push Docker Image to ACR
-        run: |
-          echo ${{ secrets.ACR_PASSWORD }} | docker login myregistry.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
-          docker tag myapp:${{ github.sha }} myregistry.azurecr.io/myapp:${{ github.sha }}
-          docker push myregistry.azurecr.io/myapp:${{ github.sha }}
-
-      # Deploy to Kubernetes
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl set image deployment/myapp myapp=myregistry.azurecr.io/myapp:${{ github.sha }} --namespace=my-namespace
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_COAST_030DB1A10 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "./todo-app/src/frontend" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "." # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

@@ -45,18 +45,9 @@ jobs:
         with:
           urls: |
             https://todo.theopasquier.emf-informatique.ch/
+          uploadArtifacts: false
           temporaryPublicStorage: true
-
-      - name: Vérifier le score d'accessibilité avec assertions
-        run: |
-          ACCESSIBILITY_SCORE=$(cat ./lighthouseci/report.json | jq '.categories.accessibility.score * 100')
-          echo "Score d'accessibilité : $ACCESSIBILITY_SCORE"
-          if (( $(echo "$ACCESSIBILITY_SCORE < 90" | bc -l) )); then
-            echo "Erreur : Le score d'accessibilité est trop bas !"
-            exit 1
-          fi
-        env:
-          CI: true
+          configPath: './todo-app/lighthouserc.json'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

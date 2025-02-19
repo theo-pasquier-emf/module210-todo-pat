@@ -44,7 +44,7 @@ jobs:
         id: lighthouse
         uses: treosh/lighthouse-ci-action@v12
         with:
-          configPath: ".lighthouserc.json"
+          configPath: "./lighthouserc.json"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

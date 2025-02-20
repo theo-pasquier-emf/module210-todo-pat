@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # Déclenchement lorsque le code est poussé sur main
+    paths:
+      - 'src/backend/**'  # Se déclenche uniquement si des fichiers dans 'src/backend' sont modifiés
 env:
   REG_NAME: "exo.container-registry.com" # Nom du registre sans "azurecr.io"
   IMAGE_NAME: "todo-app" # Nom de votre image dans acr
@@ -23,7 +25,7 @@ jobs:
      
       - name: build docker image
         run: |
-          cd ./todo-app/src/backend
+          cd src/backend
           docker build -t ${{ env.REG_NAME }}/c213-emf/${{ env.IMAGE_NAME }} .
  
  

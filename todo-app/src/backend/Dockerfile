@@ -5,9 +5,10 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copier uniquement les fichiers nécessaires à l'installation des dépendances
-COPY package*.json package-lock*.json* ./
+COPY package.json ./  # Copier le fichier package.json
+COPY package-lock.json ./  # Copier package-lock.json si disponible
 
-# Vérifier si package-lock.json existe avant de l'utiliser
+# Installer les dépendances (npm ci si le lockfile existe, sinon npm install)
 RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 # Copier le reste des fichiers de l'application dans le conteneur
@@ -21,3 +22,4 @@ EXPOSE 8080
 
 # Démarrer l'application
 CMD ["npm", "start"]
+

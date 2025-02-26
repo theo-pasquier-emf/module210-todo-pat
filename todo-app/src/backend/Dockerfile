@@ -5,7 +5,7 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Copier uniquement les fichiers nécessaires à l'installation des dépendances
-COPY package*.json ./
+COPY src/backend/package*.json ./
 
 # Installer les dépendances (npm ci si le lockfile existe, sinon npm install)
 RUN npm install

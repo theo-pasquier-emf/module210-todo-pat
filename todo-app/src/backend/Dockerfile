@@ -1,17 +1,14 @@
-# Utiliser une image Node.js officielle comme image de base
+# Utiliser une image Node.js officielle comme base
 FROM node:16
 
 # Définir le répertoire de travail à l'intérieur du conteneur
 WORKDIR /usr/src/app
 
-# Copier le fichier package.json et package-lock.json
+# Copier uniquement les fichiers nécessaires à l'installation des dépendances
 COPY package*.json ./
 
-# Mettre à jour les paquets et installer les outils nécessaires (pour les compilations natives, par exemple)
-RUN apt-get update && apt-get install -y build-essential
-
-# Installer les dépendances de l'application avec des logs détaillés pour déboguer
-RUN npm install --verbose
+# Installer les dépendances (npm ci si le lockfile existe, sinon npm install)
+RUN npm install
 
 # Copier le reste des fichiers de l'application dans le conteneur
 COPY . .

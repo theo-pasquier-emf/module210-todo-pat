@@ -186,3 +186,48 @@ button:hover {
     border-radius: 10px;
   }
 }
+/* 🔄 Animation de rotation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 🌀 Icônes tournantes */
+.rotating-icon {
+  width: 60px;
+  position: absolute;
+  opacity: 0.8;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Docker 🐳 */
+.docker {
+  animation: spin 8s linear infinite;
+}
+
+/* Azure ☁️ */
+.azure {
+  animation: spin 10s linear infinite reverse;
+}
+
+/* Serverless ⚡ */
+.serverless {
+  animation: spin 6s linear infinite;
+}
+
+/* 📍 Position aléatoire (ajustée avec JS) */
+#docker1 { top: 5%; left: 10%; }
+#docker2 { top: 80%; left: 70%; }
+
+#azure1 { top: 15%; left: 80%; }
+#azure2 { top: 70%; left: 20%; }
+
+#serverless1 { top: 40%; left: 5%; }
+#serverless2 { top: 60%; left: 85%; }
+
+/* 🛠️ Effet au survol */
+.rotating-icon:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+

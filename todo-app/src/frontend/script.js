@@ -48,3 +48,17 @@ $(document).ready(function () {
     updateTaskCount();
   });
   
+
+  $(document).ready(function () {
+    function randomizeIcons() {
+      $(".rotating-icon").each(function () {
+        let newX = Math.floor(Math.random() * 90) + "%";
+        let newY = Math.floor(Math.random() * 90) + "%";
+        $(this).css({ top: newY, left: newX });
+      });
+    }
+  
+    // Changement de position toutes les 5s
+    setInterval(randomizeIcons, 5000);
+  });
+  

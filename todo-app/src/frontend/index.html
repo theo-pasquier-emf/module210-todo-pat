@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo App with Style</title>
+  <title>Todo App</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="app.js" defer></script>
-  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="app-container">
-    <h1>🚀 Todo App is Cool</h1>
-    <p id="welcome-message"></p> <!-- Message dynamique -->
+    <h1 class="crazy-title">🌀 Todo App</h1>
+    <p id="welcome-message"></p> 
+
     <form id="todo-form">
-      <input type="text" id="todo-input" placeholder="Add a new task" required>
-      <button type="submit">Add</button>
+      <input type="text" id="todo-input" placeholder="💡 Ajoute une tâche ultra importante" required>
+      <button type="submit">🚀 Ajouter !</button>
     </form>
-    <p><strong>Total tasks: <span id="task-count">0</span></strong></p>
+
+    <p><strong>Total tâches : <span id="task-count">0</span></strong></p>
     <ul id="todo-list"></ul>
+
+    <div id="effects-container">
+      <img src="https://media.giphy.com/media/j5QcmXoFW0p0k/giphy.gif" class="hidden gif-effect" alt="Explosion">
+    </div>
+
+    <p id="funny-footer">🔥 Gère ta vie comme un(e) boss 🔥</p>
   </div>
 </body>
 </html>

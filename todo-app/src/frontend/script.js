@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    // Messages de bienvenue dynamiques
+    // Messages de bienvenue rigolos
     const messages = [
-      "Organise ta journée avec style !",
-      "Ajoute une tâche et reste productif 🚀",
-      "Les petites actions font les grands succès !",
-      "Commence par une tâche et avance 💪"
+      "Prêt(e) à dominer le monde avec tes tâches ? 😈",
+      "Ajoute une tâche et deviens ultra productif(ve) 🚀",
+      "Une tâche ajoutée = une victoire de plus ! 🏆",
+      "Ne reporte pas tes tâches... ou fais-le demain ! 😜"
     ];
     $("#welcome-message").text(messages[Math.floor(Math.random() * messages.length)]);
   
@@ -22,14 +22,12 @@ $(document).ready(function () {
       const taskItem = $(`
         <li>
           <input type="checkbox" class="task-toggle">
-          <span>${taskText}</span>
-          <button class="delete-btn">🗑</button>
+          <span>${taskText} 🤯</span>
+          <button class="delete-btn">💥</button>
         </li>
       `);
   
-      // Animation d'ajout
-      taskItem.hide().appendTo("#todo-list").fadeIn(300);
-  
+      taskItem.hide().appendTo("#todo-list").fadeIn(400);
       $("#todo-input").val("");
       updateTaskCount();
     });
@@ -41,7 +39,7 @@ $(document).ready(function () {
   
     // Suppression d'une tâche
     $("#todo-list").on("click", ".delete-btn", function () {
-      $(this).parent().fadeOut(300, function () {
+      $(this).parent().fadeOut(400, function () {
         $(this).remove();
         updateTaskCount();
       });

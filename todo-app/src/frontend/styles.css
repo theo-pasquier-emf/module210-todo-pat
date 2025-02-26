@@ -1,7 +1,10 @@
-/* Général */
+/* 🎨 Importation d'une police funky */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+/* 🌍 Effets généraux */
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: 'Luckiest Guy', cursive;
+  background: linear-gradient(135deg, #ff007f, #00e1ff);
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,43 +12,57 @@ body {
   align-items: center;
   height: 100vh;
   color: white;
+  overflow: hidden;
+  animation: crazyBackground 5s infinite alternate;
 }
 
-/* Conteneur principal */
+/* 🔥 Animation du fond */
+@keyframes crazyBackground {
+  0% { background: linear-gradient(135deg, #ff007f, #00e1ff); }
+  100% { background: linear-gradient(135deg, #00e1ff, #ff007f); }
+}
+
+/* 🌀 Conteneur principal */
 .app-container {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   text-align: center;
-  animation: fadeIn 0.8s ease-in-out;
+  transform: rotate(-3deg);
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* 🤪 Effet de secousse au hover */
+.app-container:hover {
+  transform: rotate(3deg);
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #007bff;
-  font-weight: bold;
+/* 🏆 Titre principal funky */
+.crazy-title {
+  font-size: 2.5rem;
+  color: #ff0080;
+  text-shadow: 3px 3px 0 #ffd700, -2px -2px 0 #00e1ff;
+  animation: wavyText 2s infinite;
 }
 
-/* Message dynamique */
+/* 🌊 Animation du texte */
+@keyframes wavyText {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* 🤖 Message d'accueil aléatoire */
 #welcome-message {
-  font-size: 1rem;
-  color: #444;
+  font-size: 1.3rem;
+  color: #333;
   font-style: italic;
-  opacity: 0;
   animation: fadeIn 1.5s ease-in-out forwards;
 }
 
-/* Formulaire */
+/* 📝 Formulaire */
 #todo-form {
   display: flex;
   margin-bottom: 15px;
@@ -53,90 +70,119 @@ h1 {
 
 #todo-input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px 0 0 8px;
+  border: 3px dashed #ff0080;
+  border-radius: 10px 0 0 10px;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 #todo-input:focus {
-  border-color: #007bff;
+  border-color: #ffd700;
+  transform: scale(1.05);
 }
 
+/* 🚀 Bouton funky */
 button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 0 8px 8px 0;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #ffd700, #ff0080);
+  color: black;
+  border: 3px solid #ff0080;
+  border-radius: 0 10px 10px 0;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff0080, #ffd700);
+  color: white;
+  transform: rotate(5deg) scale(1.1);
 }
 
-/* Liste des tâches */
+/* 📜 Liste des tâches */
 #todo-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* 🎉 Tâche individuelle */
 #todo-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 12px;
+  border: 3px solid #ff0080;
+  border-radius: 10px;
   margin-bottom: 10px;
-  background: #f9f9f9;
+  background: #ffd700;
+  font-size: 1.1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* 🎭 Effet d'ombre et de secousse au survol */
 #todo-list li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: rotate(-2deg) translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Bouton de suppression */
+/* 💀 Effet de suppression */
 .delete-btn {
   background: none;
   border: none;
-  color: #e74c3c;
+  color: #ff0000;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .delete-btn:hover {
   color: #c0392b;
-  transform: rotate(20deg);
+  transform: rotate(-15deg) scale(1.2);
 }
 
-/* Checkbox */
-.task-toggle {
-  margin-right: 10px;
-  transform: scale(1.2);
-  cursor: pointer;
-  accent-color: #007bff;
+/* 🎵 Pied de page rigolo */
+#funny-footer {
+  font-size: 1.4rem;
+  color: #ff0080;
+  margin-top: 20px;
+  text-shadow: 2px 2px 0 #ffd700;
+  transform: rotate(2deg);
+  animation: spinText 3s infinite;
 }
 
-/* Responsivité */
+/* 🔄 Animation du pied de page */
+@keyframes spinText {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* 🌟 Animation des effets spéciaux */
+.gif-effect {
+  width: 80px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* 📱 Responsivité */
 @media (max-width: 480px) {
   #todo-form {
     flex-direction: column;
   }
   #todo-input {
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 10px;
   }
   button {
-    border-radius: 8px;
+    border-radius: 10px;
   }
 }

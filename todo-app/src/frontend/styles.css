@@ -1,10 +1,18 @@
 /* 🎨 Importation d'une police funky */
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
+/* 🌈 Animation du fond fluide */
+@keyframes backgroundGradient {
+  0% { background: linear-gradient(135deg, #ff007f, #00e1ff); }
+  25% { background: linear-gradient(135deg, #00ff99, #ffcc00); }
+  50% { background: linear-gradient(135deg, #ff5733, #33d9ff); }
+  75% { background: linear-gradient(135deg, #ff00ff, #00ffcc); }
+  100% { background: linear-gradient(135deg, #ff007f, #00e1ff); }
+}
+
 /* 🌍 Effets généraux */
 body {
   font-family: 'Luckiest Guy', cursive;
-  background: linear-gradient(135deg, #ff007f, #00e1ff);
   margin: 0;
   padding: 0;
   display: flex;
@@ -13,18 +21,57 @@ body {
   height: 100vh;
   color: white;
   overflow: hidden;
-  animation: crazyBackground 5s infinite alternate;
+  animation: backgroundGradient 8s infinite linear;
 }
 
-/* 🔥 Animation du fond */
-@keyframes crazyBackground {
-  0% { background: linear-gradient(135deg, #ff007f, #00e1ff); }
-  100% { background: linear-gradient(135deg, #00e1ff, #ff007f); }
+/* 🔄 Animation de rotation plus rapide */
+@keyframes spinFast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 🌀 Icônes tournantes */
+.rotating-icon {
+  width: 70px;
+  position: absolute;
+  opacity: 0.9;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Docker 🐳 */
+.docker {
+  animation: spinFast 3s linear infinite;
+}
+
+/* Azure ☁️ */
+.azure {
+  animation: spinFast 4s linear infinite reverse;
+}
+
+/* Serverless ⚡ */
+.serverless {
+  animation: spinFast 2.5s linear infinite;
+}
+
+/* 📍 Position aléatoire (ajustée avec JS) */
+#docker1 { top: 5%; left: 10%; }
+#docker2 { top: 80%; left: 70%; }
+
+#azure1 { top: 15%; left: 80%; }
+#azure2 { top: 70%; left: 20%; }
+
+#serverless1 { top: 40%; left: 5%; }
+#serverless2 { top: 60%; left: 85%; }
+
+/* 🛠️ Effet au survol */
+.rotating-icon:hover {
+  transform: scale(1.3);
+  opacity: 1;
 }
 
 /* 🌀 Conteneur principal */
 .app-container {
-  background: #fff;
+  background: white;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -52,14 +99,6 @@ body {
 @keyframes wavyText {
   0%, 100% { transform: rotate(-2deg); }
   50% { transform: rotate(2deg); }
-}
-
-/* 🤖 Message d'accueil aléatoire */
-#welcome-message {
-  font-size: 1.3rem;
-  color: #333;
-  font-style: italic;
-  animation: fadeIn 1.5s ease-in-out forwards;
 }
 
 /* 📝 Formulaire */
@@ -102,48 +141,6 @@ button:hover {
   transform: rotate(5deg) scale(1.1);
 }
 
-/* 📜 Liste des tâches */
-#todo-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* 🎉 Tâche individuelle */
-#todo-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border: 3px solid #ff0080;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  background: #ffd700;
-  font-size: 1.1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* 🎭 Effet d'ombre et de secousse au survol */
-#todo-list li:hover {
-  transform: rotate(-2deg) translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* 💀 Effet de suppression */
-.delete-btn {
-  background: none;
-  border: none;
-  color: #ff0000;
-  cursor: pointer;
-  font-size: 1.5rem;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.delete-btn:hover {
-  color: #c0392b;
-  transform: rotate(-15deg) scale(1.2);
-}
-
 /* 🎵 Pied de page rigolo */
 #funny-footer {
   font-size: 1.4rem;
@@ -153,81 +150,3 @@ button:hover {
   transform: rotate(2deg);
   animation: spinText 3s infinite;
 }
-
-/* 🔄 Animation du pied de page */
-@keyframes spinText {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-}
-
-/* 🌟 Animation des effets spéciaux */
-.gif-effect {
-  width: 80px;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-/* 📱 Responsivité */
-@media (max-width: 480px) {
-  #todo-form {
-    flex-direction: column;
-  }
-  #todo-input {
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  button {
-    border-radius: 10px;
-  }
-}
-/* 🔄 Animation de rotation */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 🌀 Icônes tournantes */
-.rotating-icon {
-  width: 60px;
-  position: absolute;
-  opacity: 0.8;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Docker 🐳 */
-.docker {
-  animation: spin 8s linear infinite;
-}
-
-/* Azure ☁️ */
-.azure {
-  animation: spin 10s linear infinite reverse;
-}
-
-/* Serverless ⚡ */
-.serverless {
-  animation: spin 6s linear infinite;
-}
-
-/* 📍 Position aléatoire (ajustée avec JS) */
-#docker1 { top: 5%; left: 10%; }
-#docker2 { top: 80%; left: 70%; }
-
-#azure1 { top: 15%; left: 80%; }
-#azure2 { top: 70%; left: 20%; }
-
-#serverless1 { top: 40%; left: 5%; }
-#serverless2 { top: 60%; left: 85%; }
-
-/* 🛠️ Effet au survol */
-.rotating-icon:hover {
-  transform: scale(1.2);
-  opacity: 1;
-}
-

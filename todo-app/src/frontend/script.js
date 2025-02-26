@@ -7,36 +7,36 @@ $(document).ready(function () {
       "Ne reporte pas tes tâches... ou fais-le demain ! 😜"
     ];
     $("#welcome-message").text(messages[Math.floor(Math.random() * messages.length)]);
-  
+
     // Mise à jour du compteur de tâches
     function updateTaskCount() {
       $("#task-count").text($("#todo-list li").length);
     }
-  
+
     // Ajout d'une tâche
     $("#todo-form").submit(function (e) {
       e.preventDefault();
       const taskText = $("#todo-input").val().trim();
       if (taskText === "") return;
-  
-      const taskItem = $(`
+
+      const taskItem = $(`  
         <li>
           <input type="checkbox" class="task-toggle">
           <span>${taskText} 🤯</span>
           <button class="delete-btn">💥</button>
         </li>
       `);
-  
+
       taskItem.hide().appendTo("#todo-list").fadeIn(400);
       $("#todo-input").val("");
       updateTaskCount();
     });
-  
+
     // Marquer comme complété
     $("#todo-list").on("change", ".task-toggle", function () {
       $(this).parent().toggleClass("completed");
     });
-  
+
     // Suppression d'une tâche
     $("#todo-list").on("click", ".delete-btn", function () {
       $(this).parent().fadeOut(400, function () {
@@ -44,12 +44,9 @@ $(document).ready(function () {
         updateTaskCount();
       });
     });
-  
-    updateTaskCount();
-  });
-  
 
-  $(document).ready(function () {
+    updateTaskCount();
+
     function randomizeIcons() {
       $(".rotating-icon").each(function () {
         let newX = Math.floor(Math.random() * 90) + "%";
@@ -57,8 +54,7 @@ $(document).ready(function () {
         $(this).css({ top: newY, left: newX });
       });
     }
-  
+
     // Changement de position toutes les 5s
     setInterval(randomizeIcons, 5000);
-  });
-  
+});

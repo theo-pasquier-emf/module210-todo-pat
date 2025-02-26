@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    // Messages de bienvenue rigolos
+    // Messages de bienvenue dynamiques
     const messages = [
-      "Prêt(e) à dominer le monde avec tes tâches ? 😈",
-      "Ajoute une tâche et deviens ultra productif(ve) 🚀",
-      "Une tâche ajoutée = une victoire de plus ! 🏆",
-      "Ne reporte pas tes tâches... ou fais-le demain ! 😜"
+      "Prêt(e) à être ultra productif(ve) ? 🚀",
+      "Ajoute tes tâches comme un(e) pro ! 💪",
+      "Aujourd'hui, c'est toi qui gères ! 😎",
+      "Fais une liste et deviens une légende ! 🌟"
     ];
     $("#welcome-message").text(messages[Math.floor(Math.random() * messages.length)]);
 
@@ -19,22 +19,16 @@ $(document).ready(function () {
       const taskText = $("#todo-input").val().trim();
       if (taskText === "") return;
 
-      const taskItem = $(`  
+      const taskItem = $(`
         <li>
-          <input type="checkbox" class="task-toggle">
-          <span>${taskText} 🤯</span>
-          <button class="delete-btn">💥</button>
+          <span>${taskText}</span>
+          <button class="delete-btn">🗑</button>
         </li>
       `);
 
       taskItem.hide().appendTo("#todo-list").fadeIn(400);
       $("#todo-input").val("");
       updateTaskCount();
-    });
-
-    // Marquer comme complété
-    $("#todo-list").on("change", ".task-toggle", function () {
-      $(this).parent().toggleClass("completed");
     });
 
     // Suppression d'une tâche
@@ -45,8 +39,7 @@ $(document).ready(function () {
       });
     });
 
-    updateTaskCount();
-
+    // Déplacement aléatoire des icônes toutes les 3s
     function randomizeIcons() {
       $(".rotating-icon").each(function () {
         let newX = Math.floor(Math.random() * 90) + "%";
@@ -54,7 +47,7 @@ $(document).ready(function () {
         $(this).css({ top: newY, left: newX });
       });
     }
+    setInterval(randomizeIcons, 3000);
 
-    // Changement de position toutes les 5s
-    setInterval(randomizeIcons, 5000);
+    updateTaskCount();
 });
